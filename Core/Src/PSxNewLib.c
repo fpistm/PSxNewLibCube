@@ -98,7 +98,7 @@ void shiftInOut(const byte *out, byte *in, const byte len)
     }
     printf("%x ", out ? out[i] : 0x5A);
   }
-  printf("\n");
+  printf("\r\n");
   printf("--> ");
   for (byte i = 0; i < len; ++i) {
     if (inbuf[i] < 0x10) {
@@ -106,7 +106,7 @@ void shiftInOut(const byte *out, byte *in, const byte len)
     }
     printf("%x ", inbuf[i]);
   }
-  printf("\n");
+  printf("\r\n");
 #endif
 }
 
@@ -615,7 +615,7 @@ void psxc_dumpButtons(PsxButtons psxButtons)
       }
     }
 
-    printf("\n");
+    printf("\r\n");
   }
 }
 
@@ -625,7 +625,7 @@ void psxc_dumpAnalog(const char *str, const int8_t x, const int8_t y)
   printf(" analog: x = ");
   printf("%d", x);
   printf(", y = ");
-  printf("%d\n", y);
+  printf("%d\r\n", y);
 }
 
 // We like analog sticks to return something in the [-127, +127] range

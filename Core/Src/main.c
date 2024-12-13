@@ -97,8 +97,8 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
   /* Output a message on Hyperterminal using printf function */
-  printf("Welcome to the PsxNewLib porting in STM32Cube!\n");
-  printf("Ready!\n");
+  printf("Welcome to the PsxNewLib porting in STM32Cube!\r\n");
+  printf("Ready!\r\n");
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -122,26 +122,26 @@ int main(void)
 
     if (!haveController) {
       if (psxc_begin()) {
-        printf("Controller found!\n");
+        printf("Controller found!\r\n");
         delay(300);
         if (!psxc_enterConfigMode()) {
-          printf("Cannot enter config mode\n");
+          printf("Cannot enter config mode\r\n");
         } else {
           PsxControllerType ctype = psxc_getControllerType();
           const char *cname = controllerTypeStrings[ctype < PSCTRL_MAX ? ctype : PSCTRL_MAX];
           printf("Controller Type is: ");
-          printf("%s\n", cname);
+          printf("%s\r\n", cname);
 
           if (!psxc_enableAnalogSticks(true, false)) {
-            printf("Cannot enable analog sticks\n");
+            printf("Cannot enable analog sticks\r\n");
           }
 
           if (!psxc_enableAnalogButtons(true)) {
-            printf("Cannot enable analog buttons\n");
+            printf("Cannot enable analog buttons\r\n");
           }
 
           if (!psxc_exitConfigMode()) {
-            printf("Cannot exit config mode\n");
+            printf("Cannot exit config mode\r\n");
           }
         }
 
@@ -149,12 +149,12 @@ int main(void)
         PsxControllerProtocol proto =  psxc_getProtocol();
         const char *pname = controllerProtoStrings[proto < PSPROTO_MAX ? proto : PSPROTO_MAX];
         printf("Controller Protocol is: ");
-        printf("%s\n", pname);
+        printf("%s\r\n", pname);
         haveController = true;
       }
     } else {
       if (!psxc_read()) {
-        printf("Controller lost :(\n");
+        printf("Controller lost :(\r\n");
         haveController = false;
       } else {
         //fastDigitalWrite (PIN_BUTTONPRESS, !!psxc_getButtonWord ());
